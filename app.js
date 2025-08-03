@@ -19,7 +19,7 @@ async function deactivateWorker() {
 }
 
 app.get('/', async (req, res) => {
-  await deactivateWorker();
+  // await deactivateWorker();
   res.send('okay');
 });
 
