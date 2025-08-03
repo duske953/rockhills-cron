@@ -1,5 +1,5 @@
+import 'dotenv/config';
 import express from 'express';
-import moment from 'moment';
 import mongoose from 'mongoose';
 
 const app = express();
@@ -9,7 +9,7 @@ const app = express();
     await mongoose.connect(process.env.MONGO_DB);
     console.log('db connected');
   } catch (err) {
-    console.log('Something went wrong with the db connection');
+    console.log(err);
   }
 })();
 
