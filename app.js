@@ -4,14 +4,14 @@ import mongoose from 'mongoose';
 
 const app = express();
 
-// (async function () {
-//   try {
-//     await mongoose.connect(process.env.MONGO_DB);
-//     console.log('db connected');
-//   } catch (err) {
-//     console.log('Something went wrong with the db connection');
-//   }
-// })();
+(async function () {
+  try {
+    await mongoose.connect(process.env.MONGO_DB);
+    console.log('db connected');
+  } catch (err) {
+    console.log('Something went wrong with the db connection');
+  }
+})();
 
 async function deactivateWorker() {
   const workers = await mongoose.connection.db.collection('Worker');
@@ -19,7 +19,7 @@ async function deactivateWorker() {
 }
 
 app.get('/', async (req, res) => {
-  // await deactivateWorker();
+  await deactivateWorker();
   res.send('okay');
 });
 
