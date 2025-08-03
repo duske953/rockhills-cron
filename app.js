@@ -4,14 +4,14 @@ const mongoose = require('mongoose');
 
 const app = express();
 
-(async function () {
+async function connectDb() {
   try {
     await mongoose.connect(process.env.MONGO_DB);
     console.log('db connected');
   } catch (err) {
     console.log(err);
   }
-})();
+}
 
 async function deactivateWorker() {
   const workers = await mongoose.connection.db.collection('Worker');
@@ -19,6 +19,7 @@ async function deactivateWorker() {
 }
 
 app.get('/', async (req, res) => {
+  await connectDb();
   await deactivateWorker();
   res.send('okay');
 });
